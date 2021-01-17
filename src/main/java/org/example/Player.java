@@ -106,11 +106,11 @@ public class Player {
         this.playerSalary = playerSalary;
     }
 
-    public void shoot(Player player) throws Exception{
 
+    public void shoot() throws Exception{
         Random rand = new Random();
         Double random = rand.nextDouble();
-        if(playerShootingAverage.get(player)>=random){
+        if(this.shootingAverage>=random){
             points+=2;
         }else{
             throw new MissedShotException();
