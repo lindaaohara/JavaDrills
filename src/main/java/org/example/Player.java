@@ -12,6 +12,7 @@ public class Player {
     private Double height;
     private Double shootingAverage;
     private Integer salary;
+    private int points = 0;
 
 
     public Player(String name, Integer number) {
@@ -105,12 +106,18 @@ public class Player {
         this.playerSalary = playerSalary;
     }
 
-    public boolean madeShot(){
+    public void shoot(Player player) throws Exception{
+
         Random rand = new Random();
         Double random = rand.nextDouble();
-        if(this.shootingAverage>=random) return true;
-        return false;
+        if(playerShootingAverage.get(player)>=random){
+            points+=2;
+        }else{
+            throw new MissedShotException();
+        }
     }
- //   public void shoot2()throws MissedShotException{
 
+    public int getPoints(){
+        return points;
+    }
 }

@@ -65,9 +65,15 @@ public class PlayerTest {
     }
 
     @Test
-    public void madeShot() {
+    public void testShoot()throws Exception {
         Double random = 0.3;
-        Assert.assertTrue(playerShootingAverage.get(1)>=random);
+        playerShootingAverage.get(1);
+        player.shoot(testPlayer);
+        int expected = 2;
+        int actual =player.getPoints();
+        Assert.assertEquals(expected, actual);
+
+        //Assert.assertTrue(playerShootingAverage.get(1)>=random);
 
 
     }
