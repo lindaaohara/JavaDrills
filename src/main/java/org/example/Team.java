@@ -5,12 +5,12 @@ public class Team {
     private String city;
     private String mascot;
     private Iterable<Player> players;
-    static Integer maxNumberOfPlayers = 3;
-    static Integer salaryCap = 109140000;
-    Integer totalSalaries = 0;
-    Integer availableFunds = 0;
-    Integer openSlots = 0;
-    Integer countOfPlayers =0;
+    static int maxNumberOfPlayers = 3;
+    static int salaryCap = 750000;
+    int totalSalaries;
+    int availableFunds;
+    int  openSlots;
+    int countOfPlayers;
 
     public Team(String city, String name){
         this.name = name;
@@ -50,34 +50,42 @@ public class Team {
         this.players = players;
     }
 
-    public Integer getMaxNumberOfPlayers() {
+    public int getMaxNumberOfPlayers() {
         return maxNumberOfPlayers;
     }
 
 
-    public Integer getSalaryCap() {
+    public int getSalaryCap() {
         return salaryCap;
     }
 
-    public Integer getAvailableFunds(Iterable<Player> players){
-        for(Player player : players){
-           totalSalaries+= player.getSalary();
+    public int getTotalSalaries(Iterable<Player> players) {
+        for (Player player : players) {
+            totalSalaries += player.getSalary();
         }
-        availableFunds = salaryCap - totalSalaries;
+        return totalSalaries;
+    }
+
+    public int getAvailableFunds(){
+        availableFunds = salaryCap - getTotalSalaries(players);
         return availableFunds;
     }
 
-    public Integer getOpenSlots(Iterable<Player> players){
-        for(Player player : players){
-            countOfPlayers+= countOfPlayers;
+    public Integer getCountOfPlayers(Iterable<Player> players) {
+        for (Player player : players) {
+            countOfPlayers ++;
         }
-        openSlots =maxNumberOfPlayers-countOfPlayers;
+        return countOfPlayers;
+    }
+
+    public Integer getOpenSlots(){
+        openSlots =maxNumberOfPlayers-getCountOfPlayers(players);
         return openSlots;
     }
 
-    public void addPlayer() throws Exception{
+    public void addPlayer(Player player) throws Exception{
             if(openSlots >0 && availableFunds >0){
-                Player playerToAdd = new Player("newGuy", countOfPlayers+1);
+                player = new Player(player.getName(), player.getNumber());
             }else {
                 throw new OverMaxException();
             }

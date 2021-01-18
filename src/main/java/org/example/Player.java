@@ -7,11 +7,11 @@ import java.util.Random;
 
 public class Player {
     private String name;
-    private Integer number;
+    private int number;
     private String position;
     private Double height;
     private Double shootingAverage;
-    private Integer salary =0;
+    private int salary =0;
     private int points = 0;
     private Random random;
 
@@ -25,12 +25,6 @@ public class Player {
         this.random = random;
     }
 
-    public Map<Integer,String > playerPosition= new HashMap<>();
-    public Map<Integer, Double> playerHeight= new HashMap<>();
-    public Map<Integer, Double> playerShootingAverage = new HashMap<>();
-    public Map<Integer, Integer> playerSalary = new HashMap<>();
-
-
     public String getName() {
         return name;
     }
@@ -39,11 +33,11 @@ public class Player {
         this.name = name;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(Integer number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -71,45 +65,14 @@ public class Player {
         this.shootingAverage = shootingAverage;
     }
 
-    public Integer getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(Integer salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
     }
 
-    public Map<Integer, String> getPlayerPosition() {
-        return playerPosition;
-    }
-
-    public void setPlayerPosition(Map<Integer, String> playerPosition) {
-        this.playerPosition = playerPosition;
-    }
-
-    public Map<Integer, Double> getPlayerHeight() {
-        return playerHeight;
-    }
-
-    public void setPlayerHeight(Map<Integer, Double> playerHeight) {
-        this.playerHeight = playerHeight;
-    }
-
-    public Map<Integer, Double> getPlayerShootingAverage() {
-        return playerShootingAverage;
-    }
-
-    public void setPlayerShootingAverage(Map<Integer, Double> playerShootingAverage) {
-        this.playerShootingAverage = playerShootingAverage;
-    }
-
-    public Map<Integer, Integer> getPlayerSalary() {
-        return playerSalary;
-    }
-
-    public void setPlayerSalary(Map<Integer, Integer> playerSalary) {
-        this.playerSalary = playerSalary;
-    }
 
 
     public void shoot() throws Exception{
