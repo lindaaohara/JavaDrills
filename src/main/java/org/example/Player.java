@@ -11,13 +11,18 @@ public class Player {
     private String position;
     private Double height;
     private Double shootingAverage;
-    private Integer salary;
+    private Integer salary =0;
     private int points = 0;
-
+    private Random random;
 
     public Player(String name, Integer number) {
         this.name = name;
         this.number = number;
+        this.random = new Random();
+    }
+
+    public void setRandom(Random random) {
+        this.random = random;
     }
 
     public Map<Integer,String > playerPosition= new HashMap<>();
@@ -108,9 +113,9 @@ public class Player {
 
 
     public void shoot() throws Exception{
-        Random rand = new Random();
-        Double random = rand.nextDouble();
-        if(this.shootingAverage>=random){
+
+        Double randomNumber = this.random.nextDouble();
+        if(this.shootingAverage>=randomNumber){
             points+=2;
         }else{
             throw new MissedShotException();

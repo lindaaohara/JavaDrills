@@ -5,7 +5,7 @@ public class Team {
     private String city;
     private String mascot;
     private Iterable<Player> players;
-    static Integer maxNumberOfPlayers = 15;
+    static Integer maxNumberOfPlayers = 3;
     static Integer salaryCap = 109140000;
     Integer totalSalaries = 0;
     Integer availableFunds = 0;

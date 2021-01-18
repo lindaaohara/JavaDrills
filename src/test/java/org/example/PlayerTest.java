@@ -3,6 +3,11 @@ package org.example;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
 import java.util.Collections;
@@ -11,7 +16,8 @@ import java.util.Map;
 import java.util.Random;
 
 import static org.junit.Assert.*;
-
+import static org.mockito.Mockito.*;
+@RunWith(MockitoJUnitRunner.class)
 public class PlayerTest {
     private static Player testPlayer = new Player("Tariq", 1);
     private static Map<Integer,String > playerPosition= Collections.singletonMap(1, "Guard");
@@ -20,7 +26,8 @@ public class PlayerTest {
     private static Map<Integer, Integer> playerSalary = Collections.singletonMap(1, 25000000);
 
     Player player;
-
+    @Mock
+    Random random;
 
     @Test
     public void getName() {
@@ -66,7 +73,8 @@ public class PlayerTest {
 
     @Test
     public void testShoot()throws Exception {
-        Double random = 0.3;
+        when(random.nextDouble()).thenReturn(.3D);
+        testPlayer.setRandom(this.random);
         testPlayer.setShootingAverage(playerShootingAverage.get(1)) ;
         testPlayer.shoot();
         int expected = 2;
@@ -77,7 +85,8 @@ public class PlayerTest {
 
     @Test(expected = MissedShotException.class)
     public void testMiss()throws Exception {
-        Double random = 0.8;
+        when(random.nextDouble()).thenReturn(.8D);
+        testPlayer.setRandom(this.random);
         testPlayer.setShootingAverage(playerShootingAverage.get(1));
         testPlayer.shoot();
         Assert.assertTrue(true);
