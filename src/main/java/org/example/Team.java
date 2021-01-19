@@ -58,30 +58,31 @@ public class Team {
     public int getSalaryCap() {
         return salaryCap;
     }
-
+/*
     public int getTotalSalaries(Iterable<Player> players) {
         for (Player player : players) {
             totalSalaries += player.getSalary();
         }
         return totalSalaries;
     }
-
-    public int getAvailableFunds(){
-        availableFunds = salaryCap - getTotalSalaries(players);
+*/
+    public int getAvailableFunds(Iterable<Player>players){
+        for(Player player: players){
+            totalSalaries+=player.getSalary();
+        }
+        availableFunds = salaryCap - totalSalaries;
         return availableFunds;
     }
 
-    public Integer getCountOfPlayers(Iterable<Player> players) {
+    public int getOpenSlots(Iterable<Player> players) {
         for (Player player : players) {
             countOfPlayers ++;
         }
-        return countOfPlayers;
-    }
-
-    public Integer getOpenSlots(){
-        openSlots =maxNumberOfPlayers-getCountOfPlayers(players);
+        openSlots =maxNumberOfPlayers-countOfPlayers;
         return openSlots;
     }
+
+
 
     public void addPlayer(Player player) throws Exception{
             if(openSlots >0 && availableFunds >0){

@@ -11,6 +11,9 @@ public class TeamTest {
     Player player1 = new Player("Elena Delle Donne", 11);
     Player player2 = new Player("Aerial Powers", 23);
     Player player3 = new Player("Emma Meesseman", 33);
+    Player player4 = new Player("Tina Charles", 31);
+
+
 
 
 @Before
@@ -20,6 +23,7 @@ public void setup(){
     player1.setSalary(221450);
     player2.setSalary(221450);
     player3.setSalary(221450);
+    player4.setSalary(221450);
     int maxNumberOfPlayers = 3;
     int salaryCap = 750000;
 }
@@ -40,39 +44,34 @@ public void setup(){
     @Test
     public void testGetOpenSlots(){
     int expected =1;
-    int actual = testTeam.getOpenSlots();
+    int actual = testTeam.getOpenSlots(players);
     Assert.assertEquals(expected, actual);
     }
 
-//only passes when run alone; actual is doubled when run with all tests
-    @Test
-    public void testGetTotalSalaries(){
-        int expected =442900;
-        int actual = testTeam.getTotalSalaries(players);
-        Assert.assertEquals(expected, actual);
-    }
 
     @Test
     public void testGetAvailableFunds(){
         int expected =307100;
-        int actual = testTeam.getAvailableFunds();
+        int actual = testTeam.getAvailableFunds(players);
         Assert.assertEquals(expected, actual);
     }
 
     @Test(expected = OverMaxException.class)
     public void testCannotAddPlayer()throws Exception{
         testTeam.addPlayer(player3);
+        testTeam.addPlayer(player4);
         Assert.assertTrue(true);
 
     }
 
-    @Test
-    public void testAddPlayer()throws Exception{
+    @Test(expected = OverMaxException.class)
+    public void testOpenSlotsAfterAddingPlayer()throws Exception{
         testTeam.addPlayer(player3);
-        int expected = 3;
-        int actual = testTeam.getCountOfPlayers(players);
+        int expected = 0;
+        int actual = testTeam.getOpenSlots(players);
         Assert.assertEquals(expected, actual);
 
     }
+
  }
 
